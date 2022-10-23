@@ -1,0 +1,149 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+.line-clamp {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+
+.info-cover {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background-size: cover;
+    background-position: center center;
+    filter: blur(20px);
+    opacity: 0.35;
+}
+
+.info-box__img:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    opacity: 0.8;
+}
+
+.tooltip {
+    opacity: 1 !important;
+    border-radius: 15px !important;
+    padding-bottom: 10px !important;
+}
+
+* {
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+    height: 0;
+    width: 0;
+}
+
+#app {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-areas:
+    "header"
+    "main"
+    "navigation"
+    "side-panel"
+;
+    grid-template-columns: 100%;
+    grid-template-rows: min-content repeat(3, auto);
+}
+
+
+header {
+    grid-area: header;
+    display: grid;
+    grid-template-areas:
+    "brand extras"
+    "search search"
+;
+    grid-template-columns: 1fr 1fr;
+}
+
+header #brand {
+    grid-area: brand;
+}
+
+header #extras {
+    grid-area: extras;
+}
+
+header #search {
+    grid-area: search;
+}
+
+#side-panel {
+    grid-area: side-panel;
+}
+
+#navigation {
+    grid-area: navigation;
+}
+
+main>* {
+    padding: 0px 28px;
+}
+
+.vstack {
+    @apply flex flex-col items-start justify-start;
+}
+.hstack {
+    @apply flex flex-row items-start justify-start;
+}
+
+.avatars {
+    @apply flex;
+}
+.stacked-avatars {
+    @apply avatars -space-x-2;
+}
+
+@media (min-width: 576px) {
+
+    #app {
+        grid-template-areas:
+      "header header header"
+      "navigation main main"
+      "side-panel side-panel side-panel"
+    ;
+        grid-template-columns: 230px 1fr;
+        grid-template-rows: min-content auto 0px;
+    }
+
+    header {
+        grid-template-areas: "brand extras search";
+        grid-template-columns: 1fr 1fr 2fr;
+    }
+}
+
+@media (min-width: 960px) {
+
+    #app {
+        grid-template-areas:
+      "header header header"
+      "navigation main side-panel"
+    ;
+        grid-template-columns: 230px 1fr 320px;
+        grid-template-rows: min-content auto;
+    }
+
+    header {
+        grid-template-columns: 230px auto 320px;
+    }
+}
